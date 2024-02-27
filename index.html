@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Styles -->
+    <link rel="stylesheet" href="./src/assets/css/voting-section.css">
+         <!-- Styles -->
+    <title>Sistema de votación</title>
+</head>
+<body>
+   <main>
+    <h1>FORMULARIO DE VOTACIÓN:</h1>
+ <!-- Formulario que enviará los datos al servidor para su posterior procesamiento -->
+    <form action=""  action="process-vote.php" method="POST">
+    <!-- Campos del formulario -->
+        <div class="voter-information-section">
+            <label for="voter-full-name">Nombre y Apellido:</label>
+            <input type="text" name="voter-full-name" id="voter-full-name" required><br>
+    
+            <label for="voter-nickname">Alias:</label>
+            <input type="text" name="voter-nickname" id="voter-nickname" required><br>
+    
+            <label for="voter-rut">RUT:</label>
+            <input type="text" name="voter-rut" id="voter-rut" required><br>
+    
+            <label for="voter-email">Email:</label>
+            <input type="email" name="voter-email" id="voter-email" required><br>
+    
+            <label for="voter-region">Región:</label>
+            <select name="voter-region" id="voter-region" required>
+                <option value="">Selecciona una Región</option>
+            </select><br>
+    
+            <label for="voter-commune">Comuna:</label>
+            <select name="voter-commune" id="voter-commune" required>
+                <option value="">Selecciona una Comuna</option>
+            </select><br>
+            <label for="voter-candidate">Candidato:</label>
+            <select name="voter-candidate" id="voter-candidate" required>
+                <option value="">Selecciona un Candidato</option>
+            </select><br>
+    
+            <label>¿Cómo se enteró de nosotros?</label><br>
+            <input type="checkbox" name="voter-referral-source[]" value="Internet"> Internet<br>
+            <input type="checkbox" name="voter-referral-source[]" value="Redes Sociales"> Redes Sociales<br>
+            <input type="checkbox" name="voter-referral-source[]" value="Amigos/Familiares"> Amigos/Familiares<br>
+            <input type="checkbox" name="voter-referral-source[]" value="Publicidad"> Publicidad<br>
+    
+        </div>
+        <div class="button-section">
+            <button type="submit">Enviar Voto</button>
+        </div>
+    </form>
+   </main>
+    
+</body>
+</html>
