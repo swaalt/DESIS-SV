@@ -5,7 +5,9 @@ $(document).ready(function() {
 
         // Variable para almacenar los mensajes de error
         var errors = [];
-
+        //Validaciones de todos los campos antes de hacer el submit del formulario
+        // se consideran los campos nombre / alias / email / checks / inputs
+        //
         var fullName = $('#voter-full-name').val().trim();
         if (fullName === '') {
             $('#voter-full-name-error').text('El campo Nombre y Apellido no puede estar en blanco.');
@@ -36,9 +38,36 @@ $(document).ready(function() {
             errors.push('Correo electrónico');
         }
         
+        var checkedSources = $('input[name="voter-referral-source[]"]:checked').length;
+
+        if (checkedSources < 2) {
+            $('#voter-referral-source-error').text('Seleccione al menos dos opciones.');
+            errors.push('Checkbox');
+        }
+
+        var regionId = $('#voter-region').val();
+        var communeId = $('#voter-commune').val();
+        var candidateId = $('#voter-candidate').val();
         
+       
+        regionId = regionId || "";
+        communeId = communeId || "";
+        candidateId = candidateId || "";
+        if (regionId === null || regionId === '') {
+            $('#voter-region-error').text('Seleccione una región.');
+            errors.push('Región');
+        }
 
+        if (communeId === null || communeId === '') {
+            $('#voter-commune-error').text('Seleccione una comuna.');
+            errors.push('Comuna');
+        }
 
+       
+        if (candidateId === null || candidateId ==='') {
+            $('#voter-candidate-error').text('Seleccione un candidato.');
+            errors.push('Candidato');
+        }
 
 
         if (errors.length > 0) {
