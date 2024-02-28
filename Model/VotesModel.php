@@ -12,7 +12,7 @@ class VotesModel
   public function __construct()
   {
     $this->database = new Database();
-    $config = parse_ini_file('.env');
+    $config = parse_ini_file(__DIR__ . '/../.env');
     $host = $config['DB_HOST'];
     $user = $config['DB_USER'];
     $password = $config['DB_PASSWORD'];

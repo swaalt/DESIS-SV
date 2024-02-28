@@ -5,6 +5,7 @@
 $('#voter-region').change(function() {
    
     var region_id = $(this).val();
+
     $('#voter-commune').prop('disabled', false);
 
     $.ajax({
@@ -12,7 +13,7 @@ $('#voter-region').change(function() {
         method: 'GET',
         data: { region_id: region_id },
         success: function(response) {
-          
+  
             $('#voter-commune').html(response);
         },
         error: function(xhr, status, error) {

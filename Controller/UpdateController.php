@@ -24,7 +24,7 @@ class UpdateController {
             // Construir las opciones de comuna
             $options = '<option disabled selected value="">Selecciona una comuna</option>';
             foreach ($comunas as $comuna) {
-                
+
                 $options .= '<option value="' . $comuna['id_commune'] . '">' . $comuna['name_commune'] . '</option>';
             }
 

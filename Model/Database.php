@@ -13,7 +13,7 @@ class Database
 // Constructor que inicia la conexión con la BD
      public function __construct()
      {
-          $config = parse_ini_file('.env');
+          $config = parse_ini_file(__DIR__ . '/../.env');
           $host = $config['DB_HOST'];
           $user = $config['DB_USER'];
           $password = $config['DB_PASSWORD'];

@@ -10,7 +10,7 @@ class CandidateModel
   // constructor encargado de establecer la conexión
   public function __construct()
   {
-    $config = parse_ini_file('.env');
+    $config = parse_ini_file(__DIR__ . '/../.env');
     $host = $config['DB_HOST'];
     $user = $config['DB_USER'];
     $password = $config['DB_PASSWORD'];
