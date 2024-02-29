@@ -15,7 +15,7 @@ proyecto creado para postulación a oferta laboral.
   Flujo de instalación  
     
         -Clonar proyecto dentro de la carpeta C:\xampp\htdocs  
-        -Cambiar datos para la conexión local(host,user,pass,table-name,port) de la BBDD en el archivo .env dentro de la carpeta DESIS-SV  
+        -Cambiar datos para la conexión local(host,user,pass,table-name,port) de la BBDD en el archivo .env publico (sin gitignore) dentro de la carpeta DESIS-SV  
         -Habilitar los servicios Apache y MySQL en xampp  
         -Importar la tabla BBDD en http://localhost/phpmyadmin/, este archivo está disponible en la carpeta C:\xampp\htdocs\DESIS-SV\SQL  
         -Verificar el proyecto en el link: http://localhost/DESIS-SV/    
