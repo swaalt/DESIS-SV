@@ -1,4 +1,10 @@
 <?php
+
+/** HELPER 
+ *  Helper encargada de validar según: nombre !==null , nickname >5 && a-zA-Z && 0-9 , rut en formato 
+ * tradicional chileno, inputs y checkbox.
+ * return: success si no hay errores, error si hay error en alguna validación.
+ */
 $errors = array();
 
 $fullName = $_POST['voter-full-name'];
@@ -29,23 +35,23 @@ if ($checkedSources < 2) {
     $errors['voter-referral-source'] = 'Seleccione al menos dos opciones.';
 }
 
-$regionId = $_POST['voter-region'] ?? ""; 
+$regionId = $_POST['voter-region'] ?? "";
 if (empty($regionId)) {
     $errors['voter-region'] = 'Seleccione una región.';
 }
 
-$communeId = $_POST['voter-commune'] ?? ""; 
+$communeId = $_POST['voter-commune'] ?? "";
 if (empty($communeId)) {
     $errors['voter-commune'] = 'Seleccione una comuna.';
 }
 
-$candidateId = $_POST['voter-candidate'] ?? ""; 
+$candidateId = $_POST['voter-candidate'] ?? "";
 if (empty($candidateId)) {
     $errors['voter-candidate'] = 'Seleccione un candidato.';
 }
 
 
-// Comprobar si hay errores
+// Comprobar si hay errores en caso de haber, devuelve el error en AJAX, de lo contrario, entra al success.
 if (!empty($errors)) {
     $response = array('success' => false, 'errors' => $errors);
 } else {

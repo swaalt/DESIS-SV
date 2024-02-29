@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Styles -->
-
+    <link rel="stylesheet" href="./src/assets/css/voting-section.css">
     <!-- /// -->
     <!-- Librerías -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -16,13 +15,9 @@
 </head>
 
 <body>
-    <style>
-        .error-message{
-            color:red;
-        }
-    </style>
-<main class="container">
-        <h1 class="text-center mb-4">FORMULARIO DE VOTACIÓN</h1>
+
+    <main class="container">
+        <h1 class="title text-center mb-4">FORMULARIO DE VOTACIÓN</h1>
         <form action="" action="process-vote.php" method="POST" id="voting-form">
             <div class="row g-3">
                 <div class="col-md-6">
@@ -97,11 +92,25 @@
                 <button type="submit" class="btn btn-primary">Votar</button>
             </div>
         </form>
+        <br>
+        <?php
+        /* Mensaje de confirmación sobre la acción de votar.
+*/
+        if (isset($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+
+            if (isset($flash['success'])) {
+                echo '<div class="alert alert-success">' . $flash['success'] . '</div>';
+            } elseif (isset($flash['error'])) {
+                echo '<div class="alert alert-danger">' . $flash['error'] . '</div>';
+            }
+        } ?>
     </main>
-     <!-- SCRIPTS -->
+    <!-- SCRIPTS -->
     <script src="./src/assets/js/validations.js"></script>
     <script src="./src/assets/js/updateActions.js"></script>
-     <!-- /// -->
+    <!-- /// -->
 </body>
 
 </html>

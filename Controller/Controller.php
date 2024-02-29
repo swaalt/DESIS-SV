@@ -1,5 +1,7 @@
 <?php
+
 use Respect\Validation\Validator as v;
+
 /**
  * Clase Controller
  * Esta clase maneja las solicitudes entrantes y decide qué vista mostrar según el parámetro 'page' en la URL.
@@ -40,7 +42,7 @@ class Controller
                 break;
         }
     }
-      /**
+    /**
      * Función showvoteform
      *esta función se encarga de mostrar las candidaturas, regiones y comunas disponibles, además de permitir insertar votos.
      * @requires 'View/vote-form.php'
@@ -51,7 +53,7 @@ class Controller
         $candidaturas = $this->candidateModel->ApplicantForCandidacy('candidacy');
         $regiones = $this->database->regionVoter('region');
         $comunas = $this->database->communeVoter('commune');
-        //se obtienen los datos tras el post del form
+        //se obtienen los datos tras el post del form, valida si es que el rut existe o no , y luego agrega el dato a la BBDD.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $fullName = $_POST['voter-full-name'];
@@ -62,24 +64,25 @@ class Controller
             $communeId = $_POST['voter-commune'];
             $candidateId = $_POST['voter-candidate'];
             $referralSources = isset($_POST['voter-referral-source']) ? implode(', ', $_POST['voter-referral-source']) : '';
-            // Esta sección se encarga de evaluar si es que el rut está duplicado en la BBDD
             if ($this->votesModel->isDuplicateRUT($rut)) {
-                echo "Ya se ha registrado un voto con este RUT.";
-                return;
-            }
-            
-            $inserted = $this->votesModel->insertVote($this->database->con, $fullName, $alias, $rut, $email, $communeId, $candidateId, $referralSources);
-            if ($inserted) {
-                echo "El voto se ha agregado correctamente.";
-            } else {
-                echo "Error al agregar el voto.";
+                $_SESSION['flash']['error'] = "Ya se ha registrado un voto con este RUT.";
+                header("Location:" . $this->showVoteForm());
+                exit();
             }
 
-        
+            $inserted = $this->votesModel->insertVote($this->database->con, $fullName, $alias, $rut, $email, $communeId, $candidateId, $referralSources);
+
+            if ($inserted) {
+                $_SESSION['flash']['success'] = "El voto se ha agregado correctamente.";
+            } else {
+                $_SESSION['flash']['error'] = "Error al agregar el voto.";
+            }
+
+            header("Location:" . $this->showVoteForm());
+            exit();
         }
 
 
         require_once 'View/vote-form.php';
     }
-  
 }

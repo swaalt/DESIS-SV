@@ -10,7 +10,7 @@ session_start(); // Inicia una nueva sesión o reanuda la existente.
 class Database
 {
      public $con;
-// Constructor que inicia la conexión con la BD
+     // Constructor que inicia la conexión con la BD
      public function __construct()
      {
           $config = parse_ini_file(__DIR__ . '/../.env');
@@ -55,7 +55,7 @@ class Database
           }
           return $array;
      }
-      /**
+     /**
       * Método getCommunesByRegion
       * Devuelve la comuna correspondiente según la región seleccionada por la persona.
       * @return array Un array que contiene las comunas correspondientes de la región.

@@ -1,25 +1,28 @@
-$(document).ready(function() {
-    $('#voting-form').submit(function(e) {
+/* Ajax encargado de validar mediante PHP si es que los campos del formulario son correctos, 
+si son correctos se guardan en la BBDD.
+*/
+$(document).ready(function () {
+    $('#voting-form').submit(function (e) {
         e.preventDefault();
         $('.error-message').text('');
-        var formData = $(this).serialize();
-        
+
         $.ajax({
             type: "POST",
             url: "Helper/ValidateHelper.php",
-            data: $(this).serialize(), // Envía los datos del formulario
+            data: $(this).serialize(),
             dataType: 'json',
-            success: function(response) {
-                // Procesar la respuesta del servidor
+            success: function (response) {
                 if (response.success) {
                     $('#voting-form').unbind('submit').submit();
+                    $('#vote-status').text(response.message);
+                    $('#vote-status').fadeIn().delay(3000).fadeOut();
                 } else {
-                    $.each(response.errors, function(key, value) {
+                    $.each(response.errors, function (key, value) {
                         $('#' + key + '-error').text(value);
                     });
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });

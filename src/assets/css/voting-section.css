@@ -1,5 +1,16 @@
+
 .error-message {
     color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+main .title{
+    padding:30px;
+    font-size:20px;
+}
+
+.success-message {
+    color: green;
     font-size: 14px;
     margin-top: 5px;
 }
